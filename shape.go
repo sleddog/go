@@ -5,6 +5,7 @@ import (
 	"image"
 	"image/color"
 	"image/png"
+	"math"
 	"math/rand"
 	"os"
 	"time"
@@ -210,6 +211,23 @@ func randomPolygon(numSides, maxSize int) {
 	Polygon(points...)
 }
 
+func regularPolygon(numSides, radius int) {
+	fmt.Printf("generate a regular polygon with %d sides, %d radius\n", numSides, radius)
+	centerX := 100
+	centerY := 100
+	points := make([]point, numSides)
+	for i := 0; i < numSides; i++ {
+		x := float64(centerX) + float64(radius)*math.Cos(2.0*math.Pi*float64(i)/float64(numSides))
+		y := float64(centerY) + float64(radius)*math.Sin(2.0*math.Pi*float64(i)/float64(numSides))
+		fmt.Printf("(%f, %f)\n", x, y)
+		intX := int(x)
+		intY := int(y)
+		points[i] = point{intX, intY}
+	}
+	//Polygon(point{5, 5}, point{15, 105}, point{105, 155}, point{55, 64}, point{45, 78})
+	Polygon(points...)
+}
+
 func main() {
 
 	//collect arguments
@@ -234,7 +252,7 @@ func main() {
 	//Polygon(point{1, 1}, point{1, 100}, point{100, 100}, point{100, 1})
 
 	//triangle
-	//col = color.RGBA{0, 255, 255, 255} // cyan
+	col = color.RGBA{0, 255, 255, 255} // cyan
 	//Polygon(point{5, 5}, point{15, 105}, point{105, 155})
 
 	//line?
@@ -245,10 +263,16 @@ func main() {
 	//Polygon(point{1, 1}, point{100, 100})
 
 	//col = color.RGBA{0, 255, 0, 255} // Green
-	col = color.RGBA{230, 255, 0, 255} // Green
-	randomPolygon(62, 300)
+	//col = color.RGBA{230, 255, 0, 255} // Green
+	//randomPolygon(62, 300)
 	//col = color.RGBA{255, 255, 255, 255} // white
 	//randomPolygon(8, 300)
+
+	col = color.RGBA{0, 0, 0, 255} // black
+	//regularPolygon(6, 80)
+
+	regularPolygon(5, 80)
+	regularPolygon(5, 50)
 
 	f, err := os.Create("draw.png")
 	if err != nil {
