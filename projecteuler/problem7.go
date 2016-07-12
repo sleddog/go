@@ -1,0 +1,38 @@
+/*
+https://projecteuler.net/problem=7
+10001st prime
+
+By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+
+What is the 10,001st prime number?
+*/
+
+package main
+
+import (
+	"./lib"
+	//	"container/list"
+	"fmt"
+)
+
+func main() {
+	fmt.Println("problem 7")
+	n := 10001
+	fmt.Printf("getting the %dth prime: ", n)
+	fmt.Println(lib.GetNthPrime(n))
+
+	/*
+		number := 100000000
+			primes := lib.GetPrimes(number)
+			count := 1
+			fmt.Printf("Prime Numbers from 1 - %d\n", number)
+			for e := primes.Front(); e != nil; e = e.Next() {
+				//fmt.Println(e.Value)
+				count++
+				if count == n {
+					fmt.Printf("FOUND IT, nth=%d: %d\n", n, e.Value)
+					break
+				}
+			}
+	*/
+}
