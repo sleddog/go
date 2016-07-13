@@ -1,5 +1,5 @@
 /*
-<URL>
+https://projecteuler.net/problem=<N>
 <NAME>
 
 <DESCRIPTION>
@@ -12,5 +12,5 @@ import (
 )
 
 func main() {
-	fmt.Println("problem N")
+	fmt.Println("problem <N>")
 }

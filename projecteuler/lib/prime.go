@@ -2,7 +2,7 @@ package lib
 
 import (
 	"container/list"
-	//	"fmt"
+	"fmt"
 )
 
 func main() {
@@ -19,8 +19,9 @@ func isPrime(num int) bool {
 
 func GetPrimes(number int) *list.List {
 	primes := list.New()
-	for i := number; i > 2; i-- {
+	for i := number; i >= 2; i-- {
 		if isPrime(i) {
+			fmt.Println(i)
 			primes.PushFront(i)
 		} else {
 		}
