@@ -271,8 +271,9 @@ func main() {
 	col = color.RGBA{0, 0, 0, 255} // black
 	//regularPolygon(6, 80)
 
-	regularPolygon(5, 80)
-	regularPolygon(5, 50)
+	//	regularPolygon(5, 80)
+	//	regularPolygon(5, 50)
+	regularPolygon(8, 100)
 
 	f, err := os.Create("draw.png")
 	if err != nil {
