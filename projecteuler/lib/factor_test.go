@@ -26,6 +26,18 @@ func BenchmarkFactors(b *testing.B) {
 
 func BenchmarkFactors2(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		Factors2(100)
+		Factors2(10000)
+	}
+}
+
+func BenchmarkProperDivisors(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		ProperDivisors(10000)
+	}
+}
+
+func BenchmarkProperDivisors2(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		ProperDivisors2(10000)
 	}
 }
