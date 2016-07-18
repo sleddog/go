@@ -5,7 +5,10 @@ import (
 	"fmt"
 )
 
-func isPrime(num int) bool {
+func IsPrime(num int) bool {
+	if num < 0 {
+		return false //for problem27 (negative numbers are not prime)
+	}
 	for i := 2; i <= num/2; i++ {
 		if num%i == 0 {
 			return false
@@ -17,7 +20,7 @@ func isPrime(num int) bool {
 func GetPrimes(number int) *list.List {
 	primes := list.New()
 	for i := number; i >= 2; i-- {
-		if isPrime(i) {
+		if IsPrime(i) {
 			fmt.Println(i)
 			primes.PushFront(i)
 		} else {
@@ -31,7 +34,7 @@ func GetNthPrime(n int) int {
 	number := 2
 	for {
 		//fmt.Println("number=", number)
-		if isPrime(number) {
+		if IsPrime(number) {
 			count++
 		}
 		if count >= n {
