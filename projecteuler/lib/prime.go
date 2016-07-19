@@ -6,8 +6,8 @@ import (
 )
 
 func IsPrime(num int) bool {
-	if num < 0 {
-		return false //for problem27 (negative numbers are not prime)
+	if num < 2 {
+		return false
 	}
 	for i := 2; i <= num/2; i++ {
 		if num%i == 0 {
