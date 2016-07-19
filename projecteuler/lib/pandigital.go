@@ -4,30 +4,41 @@ import (
 	"strconv"
 )
 
-func IsPandigitalInt(n int) bool {
-	s := strconv.Itoa(n)
-	return IsPandigital(s)
+func IsNPandigitalInt(n, v int) bool {
+	s := strconv.Itoa(v)
+	return IsNPandigital(n, s)
 }
 
-func IsPandigital(s string) bool {
-	if len(s) != 9 {
+func IsNPandigital(n int, s string) bool {
+	if len(s) != n {
 		return false
 	}
-
-	m := make(map[int]bool)
+	m := make([]int, n)
 	for i := 0; i < len(s); i++ {
 		tmpInt, _ := strconv.Atoi(s[i : i+1])
-		if tmpInt == 0 {
+		if tmpInt == 0 || tmpInt > n {
 			return false
 		}
-		if m[tmpInt] {
+		if m[tmpInt-1] != 0 {
 			return false
 		}
-		m[tmpInt] = true
+		m[tmpInt-1] = 1
 	}
-	if len(m) == 9 {
+	sum := 0
+	for _, v := range m {
+		sum += v
+	}
+	if sum == n {
 		return true
 	} else {
 		return false
 	}
+}
+
+func IsPandigitalInt(n int) bool {
+	return IsNPandigitalInt(9, n)
+}
+
+func IsPandigital(s string) bool {
+	return IsNPandigital(9, s)
 }

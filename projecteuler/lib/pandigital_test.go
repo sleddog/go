@@ -17,3 +17,11 @@ func TestIsPandigitalInt(t *testing.T) {
 		t.Errorf("this number is pandigital...")
 	}
 }
+
+func TestIsNPandigitalInt(t *testing.T) {
+	//problem 41 - 2143 is a 4-digit pandigital
+	i := 2143
+	if !IsNPandigitalInt(4, i) {
+		t.Errorf("this number is 4-pandigital...")
+	}
+}
