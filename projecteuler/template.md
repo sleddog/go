@@ -1,5 +1,5 @@
 /*
-https://projecteuler.net/problem=n
+https://projecteuler.net/problem=NNN
 <NAME>
 
 <DESCRIPTION>
@@ -12,5 +12,5 @@ import (
 )
 
 func main() {
-	fmt.Println("problem n")
+	fmt.Println("problem NNN")
 }
