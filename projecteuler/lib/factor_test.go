@@ -1,16 +1,13 @@
 package lib
 
 import (
-	"fmt"
 	"testing"
 )
 
 func TestFactorFuncs(t *testing.T) {
 	for i := 1; i < 100; i++ {
 		factors := Factors(i)
-		fmt.Println(factors)
 		factors2 := Factors2(i)
-		fmt.Println(factors2)
 
 		if len(factors) != len(factors2) {
 			t.Errorf("factor length must be the same")
