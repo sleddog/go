@@ -42,3 +42,27 @@ func IsPandigitalInt(n int) bool {
 func IsPandigital(s string) bool {
 	return IsNPandigital(9, s)
 }
+
+func IsPandigital10(s string) bool {
+	n := 10
+	if len(s) != n {
+		return false
+	}
+	m := make([]int, 10)
+	for i := 0; i < len(s); i++ {
+		tmpInt, _ := strconv.Atoi(s[i : i+1])
+		if m[tmpInt] != 0 {
+			return false
+		}
+		m[tmpInt] = 1
+	}
+	sum := 0
+	for _, v := range m {
+		sum += v
+	}
+	if sum == n {
+		return true
+	} else {
+		return false
+	}
+}
