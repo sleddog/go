@@ -33,18 +33,12 @@ func main() {
 		h[i] = hexagonal(i)
 	}
 
-	for x := 1; x < 10000000; x++ {
-		if x%100000 == 0 {
-			fmt.Println(x)
-		}
-		tB, tK := isInList(x, t)
-		if tB {
-			pB, pK := isInList(x, p)
-			if pB {
-				hB, hK := isInList(x, h)
-				if hB {
-					fmt.Printf("T%v = P%v = H%v = %v\n", tK, pK, hK, x)
-				}
+	for tK, x := range t {
+		pB, pK := isInList(x, p)
+		if pB {
+			hB, hK := isInList(x, h)
+			if hB {
+				fmt.Printf("T%v = P%v = H%v = %v\n", tK, pK, hK, x)
 			}
 		}
 	}
