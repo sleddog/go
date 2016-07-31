@@ -19,9 +19,41 @@ Find the first four consecutive integers to have four distinct prime factors. Wh
 package main
 
 import (
+	"./lib"
 	"fmt"
 )
 
+var p []int
+
 func main() {
 	fmt.Println("problem 47")
+	size := 16
+	p = lib.GetPrimesSieve(size)
+	fmt.Println(p)
+	distinctTwoPrimeFactors(size)
+}
+
+func distinctTwoPrimeFactors(size int) {
+	d := 2
+	fmt.Printf("looking for first %v consecutive numbers to have %v distinct prime factors\n", d, d)
+
+	lastFound := 0
+
+	for i := 1; i < size; i++ {
+		for _, v1 := range p {
+			for _, v2 := range p {
+				if v1 >= v2 {
+					continue
+				}
+				if v1*v2 == i {
+					fmt.Printf("%v * %v = %v\n", v1, v2, i)
+					if lastFound+1 == i {
+						fmt.Println("consecutive")
+						return
+					}
+					lastFound = i
+				}
+			}
+		}
+	}
 }
