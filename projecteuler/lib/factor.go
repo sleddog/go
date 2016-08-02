@@ -55,3 +55,34 @@ func ProperDivisors2(n int) []int {
 	}
 	return d
 }
+
+//needed for problem47
+func DistinctPrimeFactors(i int) []int {
+	pf := []int{}
+	factors := make(map[int]int)
+	for n := i; n > 1; {
+		factor := getFactor(n)
+		if f, ok := factors[factor]; ok {
+			factors[factor] = f + 1
+		} else {
+			factors[factor] = 1
+		}
+		n = n / factor
+	}
+	//convert map to a slice, by raising the key to the value (k^v)
+	for k, v := range factors {
+		pf = append(pf, int(math.Pow(float64(k), float64(v))))
+	}
+	return pf
+}
+
+func getFactor(n int) int {
+	x := 2
+	for x < int(math.Sqrt(float64(n)))+1 {
+		if n%x == 0 {
+			return x
+		}
+		x += 1
+	}
+	return n
+}
