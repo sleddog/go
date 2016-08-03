@@ -2,6 +2,10 @@ package lib
 
 import (
 	"container/list"
+	"encoding/gob"
+	"fmt"
+	"os"
+	"strconv"
 )
 
 func IsPrimeSlow(num int) bool {
@@ -105,4 +109,55 @@ func GetPrimesSieve(max int) []int {
 		ch = ch1
 	}
 	return primes
+}
+
+func GetPrimesFromCache(max int) []int {
+	tmpStr := strconv.Itoa(max)
+	fileName := "./lib/primes" + tmpStr + ".gob"
+	if _, err := os.Stat(fileName); err == nil {
+		return readFile(fileName)
+	} else {
+		p := GetPrimesSieve(max)
+		writeFile(fileName, p)
+		return p
+	}
+}
+
+func writeFile(fileName string, p []int) {
+	// create a file
+	dataFile, err := os.Create(fileName)
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	// serialize the data
+	dataEncoder := gob.NewEncoder(dataFile)
+	dataEncoder.Encode(p)
+
+	dataFile.Close()
+}
+
+func readFile(fileName string) []int {
+	var data []int
+
+	// open data file
+	dataFile, err := os.Open(fileName)
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	dataDecoder := gob.NewDecoder(dataFile)
+	err = dataDecoder.Decode(&data)
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	dataFile.Close()
+	return data
 }
